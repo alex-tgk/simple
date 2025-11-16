@@ -5,3 +5,4 @@ export * from './Pagination';
 export * from './Tabs';
 export * from './Accordion';
 export * from './Modal';
+export * from './Toast';
