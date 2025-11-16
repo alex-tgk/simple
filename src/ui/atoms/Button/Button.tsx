@@ -1,65 +1,65 @@
-import React from 'react';
+import type { ButtonProps } from './Button.types';
+import { buttonVariants } from './Button.styles';
+import { clsx } from 'clsx';
 
-export interface ButtonProps {
-  /**
-   * Button contents
-   */
-  children: React.ReactNode;
-  /**
-   * Optional click handler
-   */
-  onClick?: () => void;
-  /**
-   * Button variant
-   */
-  variant?: 'primary' | 'secondary' | 'danger';
-  /**
-   * Button size
-   */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Is button disabled?
-   */
-  disabled?: boolean;
-  /**
-   * Button type
-   */
-  type?: 'button' | 'submit' | 'reset';
-}
-
-const variantClasses = {
-  primary: 'bg-primary-600 hover:bg-primary-700 text-white',
-  secondary: 'bg-secondary-500 hover:bg-secondary-600 text-white',
-  danger: 'bg-danger-600 hover:bg-danger-700 text-white',
-};
-
-const sizeClasses = {
-  small: 'px-3 py-1.5 text-sm',
-  medium: 'px-4 py-2 text-base',
-  large: 'px-6 py-3 text-lg',
-};
-
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   children,
-  onClick,
   variant = 'primary',
   size = 'medium',
   disabled = false,
+  isLoading = false,
+  className,
   type = 'button',
-}) => {
+  ...restProps
+}: ButtonProps): JSX.Element => {
+  const buttonClasses = clsx(
+    buttonVariants({
+      variant,
+      size,
+      disabled,
+      isLoading,
+    }),
+    className
+  );
+
   return (
     <button
       type={type}
-      onClick={onClick}
-      disabled={disabled}
-      className={`
-        font-semibold rounded-lg transition-colors duration-200
-        ${variantClasses[variant]}
-        ${sizeClasses[size]}
-        ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-      `}
+      disabled={disabled || isLoading}
+      className={buttonClasses}
+      aria-disabled={disabled || isLoading}
+      aria-busy={isLoading}
+      {...restProps}
     >
-      {children}
+      {isLoading ? (
+        <span className="flex items-center gap-2">
+          <svg
+            className="animate-spin h-4 w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            />
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+            />
+          </svg>
+          {children}
+        </span>
+      ) : (
+        children
+      )}
     </button>
   );
 };
+
+Button.displayName = 'Button';
