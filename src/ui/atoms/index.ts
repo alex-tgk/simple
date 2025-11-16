@@ -10,3 +10,4 @@ export * from './Badge';
 export * from './Avatar';
 export * from './Spinner';
 export * from './Progress';
+export * from './Divider';
