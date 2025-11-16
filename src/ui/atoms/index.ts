@@ -7,3 +7,4 @@ export * from './Switch';
 export * from './Select';
 export * from './Label';
 export * from './Badge';
+export * from './Avatar';
