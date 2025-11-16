@@ -11,3 +11,4 @@ export * from './Avatar';
 export * from './Spinner';
 export * from './Progress';
 export * from './Divider';
+export * from './Skeleton';
