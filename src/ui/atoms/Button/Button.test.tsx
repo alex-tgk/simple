@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Button } from './Button.tsx';
+import { Button } from './index';
 
 describe('Button', () => {
   it('renders button with text', () => {
@@ -30,11 +30,17 @@ describe('Button', () => {
   it('applies primary variant classes', () => {
     const { container } = render(<Button variant="primary">Primary</Button>);
     const button = container.querySelector('button');
-    expect(button?.className).toContain('bg-blue-600');
+    expect(button?.className).toContain('bg-primary-500');
   });
 
   it('applies secondary variant classes', () => {
     const { container } = render(<Button variant="secondary">Secondary</Button>);
+    const button = container.querySelector('button');
+    expect(button?.className).toContain('bg-secondary-500');
+  });
+
+  it('applies tertiary variant classes', () => {
+    const { container } = render(<Button variant="tertiary">Tertiary</Button>);
     const button = container.querySelector('button');
     expect(button?.className).toContain('bg-gray-200');
   });
@@ -42,7 +48,13 @@ describe('Button', () => {
   it('applies danger variant classes', () => {
     const { container } = render(<Button variant="danger">Danger</Button>);
     const button = container.querySelector('button');
-    expect(button?.className).toContain('bg-red-600');
+    expect(button?.className).toContain('bg-red-500');
+  });
+
+  it('applies ghost variant classes', () => {
+    const { container } = render(<Button variant="ghost">Ghost</Button>);
+    const button = container.querySelector('button');
+    expect(button?.className).toContain('bg-transparent');
   });
 
   it('applies small size classes', () => {
@@ -61,5 +73,18 @@ describe('Button', () => {
     const { container } = render(<Button size="large">Large</Button>);
     const button = container.querySelector('button');
     expect(button?.className).toContain('px-6');
+  });
+
+  it('shows loading spinner when isLoading is true', () => {
+    render(<Button isLoading>Loading</Button>);
+    const svg = document.querySelector('svg');
+    expect(svg).toBeInTheDocument();
+    expect(svg?.classList.contains('animate-spin')).toBe(true);
+  });
+
+  it('disables button when isLoading is true', () => {
+    render(<Button isLoading>Loading</Button>);
+    const button = screen.getByRole('button');
+    expect(button).toBeDisabled();
   });
 });
