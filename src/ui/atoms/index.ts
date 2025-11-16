@@ -6,3 +6,4 @@ export * from './Radio';
 export * from './Switch';
 export * from './Select';
 export * from './Label';
+export * from './Badge';
