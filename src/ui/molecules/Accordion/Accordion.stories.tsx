@@ -15,14 +15,17 @@ type Story = StoryObj<typeof Accordion>;
 
 const sampleItems = [
   {
+    id: 'faq-1',
     title: 'What is your return policy?',
     content: 'We offer a 30-day return policy on all items. Items must be in original condition with tags attached.',
   },
   {
+    id: 'faq-2',
     title: 'How long does shipping take?',
     content: 'Standard shipping takes 5-7 business days. Express shipping is available and takes 2-3 business days.',
   },
   {
+    id: 'faq-3',
     title: 'Do you ship internationally?',
     content: 'Yes, we ship to most countries worldwide. International shipping costs and delivery times vary by location.',
   },
@@ -54,6 +57,7 @@ export const WithDisabled: Story = {
     items: [
       ...sampleItems,
       {
+        id: 'faq-disabled',
         title: 'Disabled Item',
         content: 'This item is disabled',
         disabled: true,
@@ -66,6 +70,7 @@ export const LongContent: Story = {
   args: {
     items: [
       {
+        id: 'terms',
         title: 'Terms and Conditions',
         content: (
           <div>
@@ -82,6 +87,7 @@ export const LongContent: Story = {
         ),
       },
       {
+        id: 'privacy',
         title: 'Privacy Policy',
         content: 'Your privacy is important to us. We collect and use your personal information only as described in this policy.',
       },

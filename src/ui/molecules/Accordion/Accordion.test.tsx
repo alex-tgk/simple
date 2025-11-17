@@ -6,9 +6,9 @@ import { Accordion } from './Accordion';
 
 describe('Accordion', () => {
   const items = [
-    { title: 'Item 1', content: 'Content 1' },
-    { title: 'Item 2', content: 'Content 2' },
-    { title: 'Item 3', content: 'Content 3' },
+    { id: '1', title: 'Item 1', content: 'Content 1' },
+    { id: '2', title: 'Item 2', content: 'Content 2' },
+    { id: '3', title: 'Item 3', content: 'Content 3' },
   ];
 
   it('renders accordion items', () => {
@@ -63,8 +63,8 @@ describe('Accordion', () => {
 
   it('handles disabled items', async () => {
     const itemsWithDisabled = [
-      { title: 'Item 1', content: 'Content 1' },
-      { title: 'Item 2', content: 'Content 2', disabled: true },
+      { id: '1', title: 'Item 1', content: 'Content 1' },
+      { id: '2', title: 'Item 2', content: 'Content 2', disabled: true },
     ];
     const user = userEvent.setup();
     render(<Accordion items={itemsWithDisabled} />);

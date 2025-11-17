@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 export interface AccordionItem {
+  id: string;
   title: string;
   content: React.ReactNode;
   disabled?: boolean;
@@ -61,7 +62,7 @@ export const Accordion: React.FC<AccordionProps> = ({
         const isOpen = openItems.has(index);
 
         return (
-          <div key={index}>
+          <div key={item.id}>
             <button
               onClick={() => toggleItem(index)}
               disabled={item.disabled}
