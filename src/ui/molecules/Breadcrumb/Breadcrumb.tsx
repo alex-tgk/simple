@@ -35,7 +35,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           const isCurrent = item.isCurrentPage || isLast;
 
           return (
-            <li key={index} className="flex items-center gap-2">
+            <li key={item.href || `breadcrumb-${index}`} className="flex items-center gap-2">
               {item.href && !isCurrent ? (
                 <a
                   href={item.href}
