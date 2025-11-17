@@ -129,6 +129,16 @@
   --transition-DEFAULT: 200ms;
   --transition-slow: 300ms;
   --transition-slower: 500ms;
+
+  /* Keyframe Animations */
+  @keyframes shimmer {
+    0% {
+      background-position: -100% 0;
+    }
+    100% {
+      background-position: 100% 0;
+    }
+  }
 }
 
 @layer base {
